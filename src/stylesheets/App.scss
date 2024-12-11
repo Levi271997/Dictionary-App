@@ -1,0 +1,69 @@
+@import './variables.scss';
+
+html{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  margin: 0;
+  padding: 0;
+
+  &.theme_light{
+
+    .clr-prime{
+      color: $clr-dark-200;
+    }
+  }
+
+  &.theme_dark{
+
+    .clr-prime{
+      color: $clr-white-100;
+    }
+  }
+
+  &.ff-sans-serif{
+    font-family: 'Inter',sans-serif;
+  }
+
+  &.ff-serif{
+    font-family: 'Lora', serif;
+  }
+
+  &.ff-mono{
+    font-family: 'Inconsolata', monospace;
+  }
+
+}
+
+p{
+  margin: 0;
+}
+.container{
+    max-width: 736px;
+    margin: auto;
+}
+
+.header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 63px;
+}
+
+.right-toggles{
+    display: flex;
+    align-items: center;
+}
+
+.font-toggle{
+    display: flex;
+    align-items: center;
+    gap:18px;
+
+    .font-fam{
+      @include apply-typography(bodyM);
+      font-weight: 700;
+    }
+}
