@@ -102,29 +102,17 @@ $typography-styles: (
 
 
 $light-theme:(
-   site:(
-        background:$clr-white-100,
-        color:$clr-dark-200,
-   ),
-   clrPrimeReverse:(
-        color:$clr-white-100,
-        background:$clr-dark-200
-   )
-
-
+    background:$clr-white-100,
+    text:$clr-dark-200,
 );
 
 $dark-theme:(
-   site:(
-        background:$clr-dark-200,
-        color:$clr-white-100
-   ),
-
-    clrPrimeReverse:(
-        color:$clr-dark-200,
-        background:$clr-white-100
-   )
+    background:$clr-dark-400,
+    text:$clr-white-100,
 );
 
 
   
+$trans-fast: 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+$trans-medium: 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+$trans-slow: 0.6s cubic-bezier(0.76, 0, 0.24, 1);

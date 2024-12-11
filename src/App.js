@@ -1,6 +1,7 @@
 import './stylesheets/App.scss';
 import logo from './assets/images/logo.svg';
 import dropdownlogo from './assets/images/icon-arrow-down.svg';
+import { useState } from 'react';
 
 function App() {
   return (
@@ -29,8 +30,14 @@ const AppHeader = () => {
 export {AppHeader};
 
 const FontFamToggle=()=>{
+
+  const [toggleState, setToggleState] = useState('collapsed');
+
+  const handleDropDown = ()=>{
+    setToggleState(toggleState === 'collapsed' ? 'expanded' : 'collapsed');
+  }
   return(
-    <div className='font-toggle'>
+    <div onClick={handleDropDown} className={`font-toggle ${toggleState}`}>
       <p className='font-fam clr-prime'>Sans Serif</p>
       <img src={dropdownlogo}/>
       <div className='options clr-prime-reverse bg-prime-reverse'>

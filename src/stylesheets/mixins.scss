@@ -4,3 +4,9 @@
     line-height: map-get($selected-style, line-height);
     font-style: map-get($selected-style, font-style);
   }
+
+  @mixin theme-variables($theme) {
+    background-color: map-get($theme, background);
+    color: map-get($theme, text);
+  }
+  
