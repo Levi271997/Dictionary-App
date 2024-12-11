@@ -101,13 +101,30 @@ $typography-styles: (
 );
 
 
-$site-colors:(
-    lightTheme:(
+$light-theme:(
+   site:(
+        background:$clr-white-100,
+        color:$clr-dark-200,
+   ),
+   clrPrimeReverse:(
+        color:$clr-white-100,
+        background:$clr-dark-200
+   )
 
-    ),
-    darkTheme:(
-        
-    )
-)
+
+);
+
+$dark-theme:(
+   site:(
+        background:$clr-dark-200,
+        color:$clr-white-100
+   ),
+
+    clrPrimeReverse:(
+        color:$clr-dark-200,
+        background:$clr-white-100
+   )
+);
+
 
   

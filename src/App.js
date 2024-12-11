@@ -33,6 +33,13 @@ const FontFamToggle=()=>{
     <div className='font-toggle'>
       <p className='font-fam clr-prime'>Sans Serif</p>
       <img src={dropdownlogo}/>
+      <div className='options clr-prime-reverse bg-prime-reverse'>
+          <ul>
+            <li>Sans Serif</li>
+            <li>Serif</li>
+            <li>Mono</li>
+          </ul>
+      </div>
     </div>
   )
 }
