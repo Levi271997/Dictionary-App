@@ -1,12 +1,21 @@
 import './stylesheets/App.scss';
 import logo from './assets/images/logo.svg';
 import dropdownlogo from './assets/images/icon-arrow-down.svg';
+import iconSearch from './assets/images/icon-search.svg';
+
 import { useState } from 'react';
 
 function App() {
   return (
     <div className="App">
         <AppHeader/>
+        <section>
+          <div className='container'>
+              <div className='dictionary-body'>
+                <SearchBar/>
+              </div>
+          </div>
+        </section>
     </div>
   );
 }
@@ -26,6 +35,7 @@ const AppHeader = () => {
           </div>
         </div>
     </header>
+  
   )
 }
 export {AppHeader};
@@ -71,3 +81,15 @@ const ThemeSwitcher=()=>{
   )
 }
 export {ThemeSwitcher}
+
+const SearchBar=()=>{
+  return(
+    <div className='searchBar'>
+      <input type='text' placeholder='Enter a word to find'/>
+      <button className='searchBtn'>
+        <img src={iconSearch}/>
+      </button>
+    </div>
+  )
+}
+export {SearchBar}

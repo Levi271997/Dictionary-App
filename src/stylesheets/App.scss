@@ -201,3 +201,36 @@ overflow: hidden;
 
   }
 }
+
+.dictionary-body{
+  padding-top: 50px;
+}
+
+.searchBar{
+  display: flex;
+  position: relative;
+
+  input[type='text']{
+    all: unset;
+    border-radius: 16px;
+    background-color: $clr-white-200;
+    padding: 20px 55px 20px 24px;
+    width:100%;
+    color:$clr-dark-200;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  } 
+
+  .searchBtn{
+    all: unset;
+    outline:none;
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    height: 100%;
+    transform: translateY(-50%);
+  }
+
+}
