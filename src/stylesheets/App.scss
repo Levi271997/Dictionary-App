@@ -221,6 +221,16 @@ overflow: hidden;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
+    &::placeholder{
+      background-color: inherit;
+      color: inherit;
+    }
+
+    :root[data-theme='dark'] &{
+      background: $clr-dark-300;
+      color: #fff;
+    }
   } 
 
   .searchBtn{
