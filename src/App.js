@@ -2,6 +2,9 @@ import './stylesheets/App.scss';
 import logo from './assets/images/logo.svg';
 import dropdownlogo from './assets/images/icon-arrow-down.svg';
 import iconSearch from './assets/images/icon-search.svg';
+import iconPlay  from './assets/images/icon-play2.svg';
+import iconPause  from './assets/images/icon-pause.svg';
+import iconNewWindow  from './assets/images/icon-new-window.svg';
 
 import { useState } from 'react';
 
@@ -13,6 +16,11 @@ function App() {
           <div className='container'>
               <div className='dictionary-body'>
                 <SearchBar/>
+
+                <div className='search-results_wrapper'>
+                      <SearchResult/>
+                </div>
+
               </div>
           </div>
         </section>
@@ -21,6 +29,63 @@ function App() {
 }
 
 export default App;
+
+const SearchResult=()=>{
+  return(
+    <>
+        <div className='topbar'>
+              <div className='word'>
+                  <p className='keyword'>keyboard</p>
+                  <p className='pronounciation'>/ˈkiːbɔːd/</p>
+              </div>
+              <button className='audio'>
+                  <audio>
+                    <source src="path/to/your/audio/file.mp3" type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                  <img src={iconPlay} className='audioicons playicon' />
+                  <img src={iconPause} className='audioicons pauseicon' />
+
+              </button>
+        </div>
+
+        <div className='meanings'>
+            <div className='meanings__group'>
+                <div className='partsOfSpeech'>
+                  <p>noun</p>
+                  <div className='separator'></div>
+                </div>
+                <div className='definitionsGroup'>
+                  <p className='title'>Meaning</p>
+                  <ul>
+                    <li>(etc.) A set of keys used to operate a typewriter, computer etc.
+                      <span className='exampletext'>"This is a sample example"</span>
+                    </li>
+                    <li>(etc.) A set of keys used to operate a typewriter, computer etc.</li>
+                    <li>(etc.) A set of keys used to operate a typewriter, computer etc.</li>
+                  </ul>
+                </div>
+                <div className='synonyms'>
+                  Synonyms <span>electronic keyboard</span>, <span>another keyboard</span>
+                </div>
+                 <div className='anonyms'>
+                  Anonyms <span>electronic keyboard</span>, <span>another keyboard</span>
+                </div>
+            </div>
+        </div>
+
+      <div className='source'>
+        <p>Source</p>
+       <div className='sourceurl'>
+        <a href='https://en.wiktionary.org/wiki/keyboard' target='_blank'>https://en.wiktionary.org/wiki/keyboard</a>
+          <img src={iconNewWindow} className='newWindowIcon'/>
+        </div>
+      </div>
+
+    </>
+  )
+}
+export {SearchResult}
 
 const AppHeader = () => {
   return (
