@@ -6,12 +6,18 @@ export const SearchProvider =({children})=>{
 
     const [searchKeyWord, setSearchKeyWord] = useState('');
 
+    const [finalWord, setFinalWord] = useState('');
+
     const updateSearchKeyword=(e)=>{
         setSearchKeyWord(e.target.value);
     }
 
+    const getFinalWord = ()=>{
+        setFinalWord(searchKeyWord);
+    }
+
     return(
-        <SearchTermContext.Provider value={{searchKeyWord, updateSearchKeyword}}>
+        <SearchTermContext.Provider value={{searchKeyWord, updateSearchKeyword,finalWord, getFinalWord}}>
                 {children}
         </SearchTermContext.Provider>
     )

@@ -213,10 +213,12 @@ overflow: hidden;
 .searchBar{
   display: flex;
   position: relative;
+  border-radius: 16px;
+  overflow: hidden;
 
   input[type='text']{
     all: unset;
-    border-radius: 16px;
+    
     background-color: $clr-white-200;
     padding: 20px 55px 20px 24px;
     width:100%;
@@ -242,10 +244,21 @@ overflow: hidden;
     all: unset;
     outline:none;
     position: absolute;
-    right: 24px;
+    right: 0;
     top: 50%;
     height: 100%;
     transform: translateY(-50%);
+    width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:transparent;
+    transition: $trans-fast;
+    cursor: pointer;
+
+    &:hover{
+     background:rgba(164, 69, 237, 0.25);
+    }
   }
 
 }
@@ -449,4 +462,30 @@ margin-top: 40px;
 
 .search-results_wrapper{
   padding-bottom: 125px;
+}
+
+.empty-search{
+
+  padding-top: 132px;
+  text-align: center;
+
+  .emptyHeading{
+       @include apply-typography(headingS);
+       line-height: normal;
+       font-weight: 700;
+       margin-block: 44px 24px;
+    transition: $trans-fast;
+       color: $clr-dark-200;
+
+       :root[data-theme='dark'] &{
+        color: #fff;
+       }
+
+  }
+  .emptyText{
+      @include apply-typography(bodyM);
+      font-weight: 400;
+      color:$clr-gray-100;
+  }
+
 }

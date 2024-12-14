@@ -5,12 +5,61 @@ import iconSearch from './assets/images/icon-search.svg';
 import iconPlay  from './assets/images/icon-play2.svg';
 import iconPause  from './assets/images/icon-pause.svg';
 import iconNewWindow  from './assets/images/icon-new-window.svg';
+import iconSmily from './assets/images/smily.png';
+
 import { useSearchObjects } from './contexts/searchcontext';
 
 import { useContext, useEffect, useState } from 'react';
 
 function App() {
 
+  
+  
+  return (
+    
+
+    <div className="App">
+        <AppHeader/>
+        <section>
+          <div className='container'>
+              <div className='dictionary-body'>
+                <SearchBar/>
+
+               
+                      <SearchResult/>
+              
+
+              </div>
+          </div>
+        </section>
+    </div>
+    
+
+  );
+}
+
+export default App;
+
+const SearchBar=()=>{
+
+const {searchKeyWord, updateSearchKeyword, getFinalWord } = useSearchObjects();
+
+
+  return(
+    <div className='searchBar'>
+      <input type='text' value={searchKeyWord} placeholder='Enter a word to find' onChange={updateSearchKeyword}/>
+      <button className='searchBtn' onClick={getFinalWord}>
+        <img src={iconSearch} alt=''/>
+      </button>
+    </div>
+  )
+}
+export {SearchBar}
+const SearchResult=()=>{
+  const {finalWord} = useSearchObjects();
+
+
+  
   // const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
@@ -38,131 +87,90 @@ function App() {
   //   fetchData();
   // }, []); // Empty dependency array means this runs once on mount
 
-  
-  
   return (
-    
+    <>
+      {finalWord ? (
+        <div className='search-results_wrapper'>
+          <div className='topbar'>
+            <div className='word'>
+              <p className='keyword'>{finalWord}</p>
+              <p className='pronounciation'>/ˈkiːbɔːd/</p>
+            </div>
+            <button className='audio'>
+              <audio>
+                <source src="path/to/your/audio/file.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+              <img src={iconPlay} className='audioicons playicon' alt=''/>
+              <img src={iconPause} className='audioicons pauseicon' alt=''/>
 
-    <div className="App">
-        <AppHeader/>
-        <section>
-          <div className='container'>
-              <div className='dictionary-body'>
-                <SearchBar/>
+            </button>
+          </div>
 
-                <div className='search-results_wrapper'>
-                      <SearchResult/>
-                </div>
-
+          <div className='meanings'>
+              <div className='meanings__group'>
+                  <div className='partsOfSpeech'>
+                    <p>noun</p>
+                    <div className='separator'></div>
+                  </div>
+                  <div className='definitionsGroup'>
+                    <p className='title'>Meaning</p>
+                    <ul>
+                      <li>(etc.) A set of keys used to operate a typewriter, computer etc.
+                        <span className='exampletext'>"This is a sample example"</span>
+                      </li>
+                      <li>(etc.) A set of keys used to operate a typewriter, computer etc.</li>
+                      <li>(etc.) A set of keys used to operate a typewriter, computer etc.</li>
+                    </ul>
+                  </div>
+                  <div className='synonyms'>
+                    Synonyms <span>electronic keyboard</span>, <span>another keyboard</span>
+                  </div>
+                   <div className='anonyms'>
+                    Anonyms <span>electronic keyboard</span>, <span>another keyboard</span>
+                  </div>
               </div>
           </div>
-        </section>
-    </div>
-    
 
-  );
-}
-
-export default App;
-
-const SearchBar=()=>{
-
-  
-  const handleChangeWord=(e)=>{
-    setKeyword(e.target.value);
-  }
-  
-
-
-  const useSearchContext =()=>{
-    const searchContext = useContext(SearchTermContext);
-    if(!searchContext){
-      throw new Error("useSearchContext must be used within a SearchTermProvider");
-    }
-    return searchContext;
-  }
-
-
-  const {searchValue, setSearchValue }= useSearchContext();
-  
-  const [keyword, setKeyword] = useState('');
-
-  const handleSearchSubmit=()=>{
-    setSearchValue(keyword);
-  }
-  
-  return(
-    <div className='searchBar'>
-      <input type='text' value={keyword} placeholder='Enter a word to find' onChange={handleChangeWord}/>
-      <button className='searchBtn' onClick={handleSearchSubmit}>
-        <img src={iconSearch} alt=''/>
-      </button>
-    </div>
-  )
-}
-export {SearchBar}
-
-const SearchResult=()=>{
-
-  const searchword = useContext(SearchTermContext);
-
-
-  return(
-    <>
-        <div className='topbar'>
-       <p>The search word is {searchword}</p>
-              <div className='word'>
-                  <p className='keyword'>keyboard</p>
-                  <p className='pronounciation'>/ˈkiːbɔːd/</p>
-              </div>
-              <button className='audio'>
-                  <audio>
-                    <source src="path/to/your/audio/file.mp3" type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
-                  <img src={iconPlay} className='audioicons playicon' alt=''/>
-                  <img src={iconPause} className='audioicons pauseicon' alt=''/>
-
-              </button>
-        </div>
-
-        <div className='meanings'>
-            <div className='meanings__group'>
-                <div className='partsOfSpeech'>
-                  <p>noun</p>
-                  <div className='separator'></div>
-                </div>
-                <div className='definitionsGroup'>
-                  <p className='title'>Meaning</p>
-                  <ul>
-                    <li>(etc.) A set of keys used to operate a typewriter, computer etc.
-                      <span className='exampletext'>"This is a sample example"</span>
-                    </li>
-                    <li>(etc.) A set of keys used to operate a typewriter, computer etc.</li>
-                    <li>(etc.) A set of keys used to operate a typewriter, computer etc.</li>
-                  </ul>
-                </div>
-                <div className='synonyms'>
-                  Synonyms <span>electronic keyboard</span>, <span>another keyboard</span>
-                </div>
-                 <div className='anonyms'>
-                  Anonyms <span>electronic keyboard</span>, <span>another keyboard</span>
-                </div>
+          <div className='source'>
+            <p>Source</p>
+           <div className='sourceurl'>
+            <a href='https://en.wiktionary.org/wiki/keyboard' target='_blank' rel='noreferrer'>https://en.wiktionary.org/wiki/keyboard</a>
+              <img src={iconNewWindow} className='newWindowIcon' alt=''/>
             </div>
+          </div>
         </div>
-
-      <div className='source'>
-        <p>Source</p>
-       <div className='sourceurl'>
-        <a href='https://en.wiktionary.org/wiki/keyboard' target='_blank' rel='noreferrer'>https://en.wiktionary.org/wiki/keyboard</a>
-          <img src={iconNewWindow} className='newWindowIcon' alt=''/>
-        </div>
-      </div>
-
+      ) : (
+        <EmptySearch/>
+      )}
     </>
   )
 }
 export {SearchResult}
+
+const EmptySearch=()=>{
+  return(
+    <div className='empty-search'>
+           
+      <p className='emptyHeading'>Search Something</p>
+      <p className='emptyText'>Type a word and click search and I will try to get the definition for you</p>
+    
+     </div>
+  )
+}
+export {EmptySearch};
+
+
+const EmptyResult=()=>{
+  return(
+    <div className='empty-search'>
+      <img src={iconSmily} alt=''/>
+      <p className='emptyHeading'>No Definitions Found</p>
+      <p className='emptyText'>Sorry pal, we couldn't find definitions for the word you were looking for. You can try the search again at later time or head to the web instead.</p>
+    </div>
+  )
+}
+export {EmptyResult};
 
 const AppHeader = () => {
   return (
