@@ -103,6 +103,7 @@ ul{
   position: absolute;
   left: 0;
   top:calc(100% + 10px);
+  z-index: 2;
   // background-color: $clr-dark-200; // Default background color
   // color:$clr-white-100;
   border-radius: 10px;

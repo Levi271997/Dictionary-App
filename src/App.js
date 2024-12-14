@@ -5,11 +5,44 @@ import iconSearch from './assets/images/icon-search.svg';
 import iconPlay  from './assets/images/icon-play2.svg';
 import iconPause  from './assets/images/icon-pause.svg';
 import iconNewWindow  from './assets/images/icon-new-window.svg';
+import { useSearchObjects } from './contexts/searchcontext';
 
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 function App() {
+
+  // const [data, setData] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+  // useEffect(() => {
+  //   // Define your API fetching function
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     setError(null); // Reset errors before fetching
+
+  //     try {
+  //       const response = await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/keyboard');
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! Status: ${response.status}`);
+  //       }
+  //       const result = await response.json();
+  //       setData(result); // Update the state with fetched data
+  //       console.log(result);
+  //     } catch (err) {
+  //       setError(err.message); // Set the error state
+  //     } finally {
+  //       setLoading(false); // Ensure loading is stopped
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []); // Empty dependency array means this runs once on mount
+
+  
+  
   return (
+    
+
     <div className="App">
         <AppHeader/>
         <section>
@@ -25,15 +58,59 @@ function App() {
           </div>
         </section>
     </div>
+    
+
   );
 }
 
 export default App;
 
+const SearchBar=()=>{
+
+  
+  const handleChangeWord=(e)=>{
+    setKeyword(e.target.value);
+  }
+  
+
+
+  const useSearchContext =()=>{
+    const searchContext = useContext(SearchTermContext);
+    if(!searchContext){
+      throw new Error("useSearchContext must be used within a SearchTermProvider");
+    }
+    return searchContext;
+  }
+
+
+  const {searchValue, setSearchValue }= useSearchContext();
+  
+  const [keyword, setKeyword] = useState('');
+
+  const handleSearchSubmit=()=>{
+    setSearchValue(keyword);
+  }
+  
+  return(
+    <div className='searchBar'>
+      <input type='text' value={keyword} placeholder='Enter a word to find' onChange={handleChangeWord}/>
+      <button className='searchBtn' onClick={handleSearchSubmit}>
+        <img src={iconSearch} alt=''/>
+      </button>
+    </div>
+  )
+}
+export {SearchBar}
+
 const SearchResult=()=>{
+
+  const searchword = useContext(SearchTermContext);
+
+
   return(
     <>
         <div className='topbar'>
+       <p>The search word is {searchword}</p>
               <div className='word'>
                   <p className='keyword'>keyboard</p>
                   <p className='pronounciation'>/ˈkiːbɔːd/</p>
@@ -43,8 +120,8 @@ const SearchResult=()=>{
                     <source src="path/to/your/audio/file.mp3" type="audio/mpeg" />
                     Your browser does not support the audio element.
                   </audio>
-                  <img src={iconPlay} className='audioicons playicon' />
-                  <img src={iconPause} className='audioicons pauseicon' />
+                  <img src={iconPlay} className='audioicons playicon' alt=''/>
+                  <img src={iconPause} className='audioicons pauseicon' alt=''/>
 
               </button>
         </div>
@@ -77,8 +154,8 @@ const SearchResult=()=>{
       <div className='source'>
         <p>Source</p>
        <div className='sourceurl'>
-        <a href='https://en.wiktionary.org/wiki/keyboard' target='_blank'>https://en.wiktionary.org/wiki/keyboard</a>
-          <img src={iconNewWindow} className='newWindowIcon'/>
+        <a href='https://en.wiktionary.org/wiki/keyboard' target='_blank' rel='noreferrer'>https://en.wiktionary.org/wiki/keyboard</a>
+          <img src={iconNewWindow} className='newWindowIcon' alt=''/>
         </div>
       </div>
 
@@ -109,7 +186,7 @@ const FontFamToggle=()=>{
   return(
     <div className={`font-toggle`}>
       <p className='font-fam clr-prime'>Sans Serif</p>
-      <img src={dropdownlogo}/>
+      <img src={dropdownlogo} alt=''/>
       <div className='options clr-prime-reverse bg-prime-reverse'>
           <ul>
             <li>Sans Serif</li>
@@ -147,14 +224,3 @@ const ThemeSwitcher=()=>{
 }
 export {ThemeSwitcher}
 
-const SearchBar=()=>{
-  return(
-    <div className='searchBar'>
-      <input type='text' placeholder='Enter a word to find'/>
-      <button className='searchBtn'>
-        <img src={iconSearch}/>
-      </button>
-    </div>
-  )
-}
-export {SearchBar}
